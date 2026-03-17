@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "order"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "orderNumber": {
+      "type": "string"
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "statu": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "shipped",
+        "delivered"
+      ]
+    },
+    "paymentMethod": {
+      "type": "string"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "order"
+    },
+    "orderItems": {
+      "type": "component",
+      "component": "orders.order-items",
+      "repeatable": true
+    },
+    "shippingAddress": {
+      "type": "json"
+    },
+    "paymentStatus": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "paid",
+        "failed"
+      ]
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    },
+    "shipping": {
+      "type": "integer"
+    }
+  }
+}
